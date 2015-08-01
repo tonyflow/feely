@@ -1,12 +1,21 @@
 package application.api;
 
+import application.api.dto.FeelerDto;
+import application.api.dto.FeelingDto;
+import application.model.Feeler;
+import application.model.Feeling;
+
 public interface FeelyService {
 
-	void addFeeler();
+	public Iterable<Feeler> listFeelers(Integer id);
 
-	void deleteFeeler();
+	FeelerDto addFeeler(FeelerDto feeler);
 
-	void addFeeling();
+	boolean deleteFeeler(String username);
 
-	void deleteFeeling();
+	public Iterable<Feeling> listFeeling(Integer id);
+
+	FeelingDto addFeeling(FeelingDto feeling);
+
+	boolean deleteFeeling(String name);
 }

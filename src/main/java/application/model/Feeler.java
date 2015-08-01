@@ -27,9 +27,6 @@ public class Feeler implements Serializable {
 	private String password;
 	private String lastFelt;
 	private String timesExpressed;
-	/**
-	 * Should hold up to a certain number of feelings
-	 */
 	private PreviousFeelings previousFeelings;
 
 	public Feeler() {

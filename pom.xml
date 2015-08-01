@@ -186,6 +186,12 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         
+        <dependency>
+        	<groupId>feely</groupId>
+        	<artifactId>feely-common</artifactId>
+        	<version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        
         <!-- guava functional programming suite -->
     	<dependency>
 			<groupId>com.google.guava</groupId>
