@@ -17,3 +17,7 @@ spring:
     application:
         database-schema: feely
         time-zone: Europe/Athens
+        elasticsearch:
+            cluster-name: feely
+            index:user_idx
+            document-type: user
