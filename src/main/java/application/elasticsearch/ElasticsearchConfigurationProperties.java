@@ -1,12 +1,6 @@
 package application.elasticsearch;
 
-import org.elasticsearch.client.Client;
-import org.elasticsearch.common.settings.ImmutableSettings;
-import org.elasticsearch.node.Node;
-import org.elasticsearch.node.NodeBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * Class has dual purpose. Parsing configuration properties yaml and declaring
@@ -16,15 +10,41 @@ import org.springframework.context.annotation.Configuration;
  * @author niko.strongioglou
  *
  */
-@Configuration
 @ConfigurationProperties(ignoreUnknownFields = false, prefix = "application")
-public class ElasticSearchConfig {
+public class ElasticsearchConfigurationProperties {
 
 	private String clusterName;
 	private String index;
 	private String documentType;
 	private String numberOfShards;
 	private String numberOfReplicas;
+	private Integer port;
+	private String host;
+	private boolean clusterSniff;
+
+	public boolean isClusterSniff() {
+		return clusterSniff;
+	}
+
+	public void setClusterSniff(boolean clusterSniff) {
+		this.clusterSniff = clusterSniff;
+	}
+
+	public Integer getPort() {
+		return port;
+	}
+
+	public void setPort(Integer port) {
+		this.port = port;
+	}
+
+	public String getHost() {
+		return host;
+	}
+
+	public void setHost(String host) {
+		this.host = host;
+	}
 
 	public String getNumberOfReplicas() {
 		return numberOfReplicas;
@@ -64,19 +84,6 @@ public class ElasticSearchConfig {
 
 	public void setDocumentType(String documentType) {
 		this.documentType = documentType;
-	}
-
-	@Bean
-	public Client client() {
-		Node node = NodeBuilder
-				.nodeBuilder()
-				.settings(
-						ImmutableSettings.settingsBuilder()
-								.put("http.enabled", true)
-								.put("number_of_shards", Integer.valueOf(getNumberOfShards()).intValue())
-								.put("number_of_replicas", Integer.valueOf(getNumberOfReplicas()).intValue()))
-				.clusterName(this.clusterName).node();
-		return node.client();
 	}
 
 }

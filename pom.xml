@@ -115,8 +115,10 @@
 								<sqlCommand>
 									DROP DATABASE IF EXISTS ${db.module.database.name}
 									DROP USER IF EXISTS ${db.root.userId}
-									CREATE USER ${db.module.userId} LOGIN PASSWORD
-									'${db.module.password}' NOCREATEDB NOCREATEROLE NOREPLICATION
+									CREATE USER
+									${db.module.userId} LOGIN PASSWORD
+									'${db.module.password}'
+									NOCREATEDB NOCREATEROLE NOREPLICATION
 									VALID UNTIL 'infinity';
 									CREATE DATABASE ${db.module.database.name} WITH ENCODING='UTF8'
 									OWNER=${db.module.userId} CONNECTION LIMIT=-1;
@@ -137,7 +139,8 @@
 								<username>${db.root.userId}</username>
 								<password>${db.root.password}</password>
 								<sqlCommand>
-									CREATE SCHEMA ${db.module.database.name} AUTHORIZATION
+									CREATE SCHEMA ${db.module.database.name}
+									AUTHORIZATION
 									${db.module.userId};
 								</sqlCommand>
 								<skip>${db.init.skip}</skip>
@@ -230,6 +233,13 @@
 			<artifactId>elasticsearch</artifactId>
 			<version>1.7.1</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+
 
 
 		<!-- test -->

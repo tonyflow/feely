@@ -18,6 +18,8 @@ spring:
         database-schema: feely
         time-zone: Europe/Athens
         elasticsearch:
+            host: localhost
+            port: 9200
             cluster-name: feely
             index:user_idx
             document-type: user

@@ -4,11 +4,18 @@ import application.api.dto.UserInfoDto;
 
 public interface UserInfoService {
 
-	UserInfoDto index();
+	UserInfoDto index(UserInfoDto userInfo);
 
-	UserInfoDto get();
+	UserInfoDto get(UserInfoDto userInfo);
 
-	UserInfoDto delete();
+	/**
+	 * Will delete user corrsponding to the specific
+	 * 
+	 * 
+	 * @param documentId
+	 * @return
+	 */
+	UserInfoDto delete(Long documentId);
 
-	UserInfoDto search();
+	UserInfoDto search(UserInfoDto userInfo);
 }

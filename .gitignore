@@ -2,4 +2,6 @@
 .project
 .settings/	
 README.md
-target/
+/target/
+.DS_Store
+/.springBeans
