@@ -1,19 +1,16 @@
 package base;
 
-import javax.annotation.PreDestroy;
-
-import org.elasticsearch.action.bulk.BulkRequestBuilder;
-import org.elasticsearch.action.bulk.BulkResponse;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.client.Client;
-import org.elasticsearch.node.Node;
-import org.elasticsearch.node.NodeBuilder;
+import org.elasticsearch.indices.IndexMissingException;
+import org.junit.After;
 import org.junit.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 
 import application.elasticsearch.ElasticsearchConfigurationProperties;
+import application.service.UserInfoServiceImpl;
 
 public abstract class AbstractElasticsearchTest extends AbstractFeelyTest {
 
@@ -23,35 +20,40 @@ public abstract class AbstractElasticsearchTest extends AbstractFeelyTest {
 	@Autowired
 	Client client;
 
-	Logger logger = LoggerFactory.getLogger(getClass());
-
-	/**
-	 * Embedded client used for integration and unit testing
-	 * 
-	 * @return Client
-	 */
-	@Bean
-	Client nodeClient() {
-		Node node = NodeBuilder.nodeBuilder().clusterName(properties.getClusterName()).node();
-		Client client = node.client();
-		return client;
-	}
-
-	@PreDestroy
-	public void closeClient() {
-		this.nodeClient().close();
-	}
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Override
 	@Before
 	public void setUp() {
 		super.setUp();
-		BulkRequestBuilder bulk = client.prepareBulk();
-		bulk.add(client.prepareIndex(properties.getIndex(), properties.getDocumentType()).setSource(buildStringFromResourceFile()));
-		BulkResponse actionGet = bulk.execute().actionGet();
-		if (actionGet.hasFailures()) {
-			logger.error("Could not complete bulk load from accounts.json");
+
+		// client.admin().indices().delete(new
+		// DeleteIndexRequest(properties.getIndex())).actionGet();
+
+		client.admin().indices().prepareCreate(properties.getIndex()).get();
+		// BulkRequestBuilder bulk = client.prepareBulk();
+		// bulk.add(client.prepareIndex(properties.getIndex(),
+		// properties.getDocumentType()).setSource(buildStringFromResourceFile()));
+		// BulkResponse actionGet = bulk.execute().actionGet();
+		// if (actionGet.hasFailures()) {
+		// logger.error("Could not complete bulk load from accounts.json");
+		// }
+	}
+
+	@Override
+	@After
+	public void tearDown() {
+		try {
+			client.admin().indices().delete(new DeleteIndexRequest(properties.getIndex())).actionGet();
+			logger.info("Delete index " + properties.getIndex());
+			// Reset index count due to the static nature of the variable
+			// FIXME should not behave like that: Find another way to assign ids
+			// to documents
+			UserInfoServiceImpl.setIndexCnt(1l);
+		} catch (IndexMissingException e) {
+			logger.error(e.index().toString());
 		}
+
 	}
 
 	private String buildStringFromResourceFile() {

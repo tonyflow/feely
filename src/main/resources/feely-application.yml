@@ -14,12 +14,15 @@ spring:
             FAIL_ON_UNKNOWN_PROPERTIES: false
             ADJUST_DATES_TO_CONTEXT_TIME_ZONE: false
 
-    application:
-        database-schema: feely
-        time-zone: Europe/Athens
-        elasticsearch:
-            host: localhost
-            port: 9200
-            cluster-name: feely
-            index:user_idx
-            document-type: user
+application:
+    database-schema: feely
+    time-zone: Europe/Athens
+    elasticsearch:
+        host: localhost
+        port: 9300
+        cluster-name: elasticsearch
+        index: user_idx
+        document-type: user
+        number-of-replicas: 1
+        number-of-shards: 5
+        cluster-sniff: false

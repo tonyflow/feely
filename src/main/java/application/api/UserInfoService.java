@@ -6,7 +6,9 @@ public interface UserInfoService {
 
 	UserInfoDto index(UserInfoDto userInfo);
 
-	UserInfoDto get(UserInfoDto userInfo);
+	UserInfoDto get(Long id);
+
+	UserInfoDto get(String id);
 
 	/**
 	 * Will delete user corrsponding to the specific
@@ -15,7 +17,9 @@ public interface UserInfoService {
 	 * @param documentId
 	 * @return
 	 */
-	UserInfoDto delete(Long documentId);
+	Boolean delete(String id);
+
+	Boolean delete(Long id);
 
 	UserInfoDto search(UserInfoDto userInfo);
 }

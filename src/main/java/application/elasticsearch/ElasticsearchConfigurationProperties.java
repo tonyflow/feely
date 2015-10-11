@@ -1,5 +1,7 @@
 package application.elasticsearch;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -10,16 +12,31 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author niko.strongioglou
  *
  */
-@ConfigurationProperties(ignoreUnknownFields = false, prefix = "application")
+@ConfigurationProperties(locations = "classpath:feely-application.yml", ignoreUnknownFields = false, prefix = "application.elasticsearch")
 public class ElasticsearchConfigurationProperties {
 
-	private String clusterName;
-	private String index;
-	private String documentType;
-	private String numberOfShards;
-	private String numberOfReplicas;
-	private Integer port;
+	@NotNull
 	private String host;
+
+	@NotNull
+	private Integer port;
+
+	@NotNull
+	private String clusterName;
+
+	@NotNull
+	private String index;
+
+	@NotNull
+	private String documentType;
+
+	@NotNull
+	private String numberOfShards;
+
+	@NotNull
+	private String numberOfReplicas;
+
+	@NotNull
 	private boolean clusterSniff;
 
 	public boolean isClusterSniff() {
