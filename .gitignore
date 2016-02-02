@@ -5,3 +5,4 @@ README.md
 /target/
 .DS_Store
 /.springBeans
+.metadata/
