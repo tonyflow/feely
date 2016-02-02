@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import application.api.dto.FeelingDto;
 import application.exceptions.FeelerNotFoundException;
 import application.exceptions.FeelingNotFoundException;
 
+@CrossOrigin(origins="http://localhost")
 @RestController
 @RequestMapping("/feely")
 public class FeelyController {
@@ -26,11 +28,15 @@ public class FeelyController {
 	@Autowired
 	FeelyService service;
 
-	@RequestMapping(value = "/list/feeling", method = RequestMethod.GET)
+	@RequestMapping(value = "/list/feeling", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Iterable<FeelingDto> listFeeling(@RequestParam(value = "id") Integer id) {
 
+		
 		logger.info("Received Request");
-		return null;
+		Iterable<FeelingDto> list = service.listFeeling(id);
+		System.out.println("Listing feelings");
+		list.forEach(c->System.out.println(" - "+c.getName()+" ,"+c.getTimbre()));
+		return list;
 
 	}
 

@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
-@EnableConfigurationProperties(ElasticsearchConfigurationProperties.class)
 @Profile("live")
 public class TransportClientConfiguration {
 

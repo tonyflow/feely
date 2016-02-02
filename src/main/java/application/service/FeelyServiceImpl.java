@@ -1,7 +1,12 @@
 package application.service;
 
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.google.common.collect.ImmutableList;
 
 import application.api.FeelyService;
 import application.api.dto.FeelerDto;
@@ -63,8 +68,10 @@ public class FeelyServiceImpl implements FeelyService {
 	}
 
 	@Override
-	public Iterable<Feeling> listFeeling(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterable<FeelingDto> listFeeling(Integer id) {
+		Iterable<Feeling> l = feelingRepository.findAll(ImmutableList.of(id));
+		return StreamSupport.stream(l.spliterator(), true).map((f)->
+			new FeelingDto(f.getName(), f.getTimbre(), f.getPotency())
+		).collect(Collectors.toList());
 	}
 }

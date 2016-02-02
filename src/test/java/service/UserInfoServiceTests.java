@@ -49,7 +49,6 @@ public class UserInfoServiceTests extends AbstractElasticsearchTest {
 
 	@Test
 	public void testUpdate() throws Exception {
-
 	}
 
 }

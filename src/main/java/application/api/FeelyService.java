@@ -13,7 +13,7 @@ public interface FeelyService {
 
 	boolean deleteFeeler(String username);
 
-	public Iterable<Feeling> listFeeling(Integer id);
+	public Iterable<FeelingDto> listFeeling(Integer id);
 
 	FeelingDto addFeeling(FeelingDto feeling);
 

@@ -63,7 +63,7 @@ public class FeelingDto implements BaseDto<Feeling>, Serializable {
 	@Override
 	public FeelingDto fromEntity(Feeling entity) {
 		// TODO Auto-generated method stub
-		return null;
+		return new FeelingDto(entity.getName(), entity.getTimbre(), entity.getPotency());
 	}
 
 }
