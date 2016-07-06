@@ -13,4 +13,10 @@ public interface FeelerRepository extends CrudRepository<Feeler, Long> {
 	// @Query("select f from Feeler where f.username = :usename")
 	public Feeler findByUsername(@Param(value = "username") String username);
 
+	public Feeler findByUsernameAndPassword(
+			@Param(value = "username") String username,
+			@Param(value = "password") String password);
+
+	public Feeler findByEmail(@Param(value = "email") String email);
+
 }

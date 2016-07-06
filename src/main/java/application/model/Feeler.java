@@ -20,9 +20,26 @@ import application.support.PreviousFeelingsConverter;
 @DynamicInsert
 @Table(name = "FEELER", schema = "FEELY")
 public class Feeler implements Serializable {
+	
+//	ID SERIAL NOT NULL,
+//	NAME VARCHAR;
+//	SURNAME VARCHAR;
+//	EMAIL VARCHAR;
+//	GENDER VARCHAR;
+//	AGE INTEGER;
+//	USERNAME VARCHAR(255),
+//	PASSWORD VARCHAR(255),
+//	LAST_FELT  VARCHAR(255) NULL,
+//	TIMES_EXPRESSED VARCHAR(255),
+//	CONSTRAINT FEELER_PK PRIMARY KEY ( ID )
 
 	private static final long serialVersionUID = 4840834635501393237L;
 	private Long id;
+	private String name;
+	private String surname;
+	private String email;
+	private String gender;
+	private Integer age;
 	private String username;
 	private String password;
 	private String lastFelt;
@@ -32,8 +49,19 @@ public class Feeler implements Serializable {
 	public Feeler() {
 	}
 
-	public Feeler(String username, String password, String lastFelt, String timesExpressed, PreviousFeelings previousFeelings) {
+	
+
+	public Feeler(Long id, String name, String surname, String email,
+			String gender, Integer age, String username, String password,
+			String lastFelt, String timesExpressed,
+			PreviousFeelings previousFeelings) {
 		super();
+		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.gender = gender;
+		this.age = age;
 		this.username = username;
 		this.password = password;
 		this.lastFelt = lastFelt;
@@ -41,15 +69,25 @@ public class Feeler implements Serializable {
 		this.previousFeelings = previousFeelings;
 	}
 
-	public Feeler(Long id, String username, String password, String lastFelt, String timesExpressed, PreviousFeelings previousFeelings) {
+
+
+	public Feeler(String name, String surname, String email, String gender,
+			Integer age, String username, String password, String lastFelt,
+			String timesExpressed, PreviousFeelings previousFeelings) {
 		super();
-		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.gender = gender;
+		this.age = age;
 		this.username = username;
 		this.password = password;
 		this.lastFelt = lastFelt;
 		this.timesExpressed = timesExpressed;
 		this.previousFeelings = previousFeelings;
 	}
+
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -106,6 +144,68 @@ public class Feeler implements Serializable {
 	public void setPreviousFeelings(PreviousFeelings previousFeelings) {
 		this.previousFeelings = previousFeelings;
 	}
+	
+	
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public String getSurname() {
+		return surname;
+	}
+
+
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+	public String getGender() {
+		return gender;
+	}
+
+
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+
+
+	public Integer getAge() {
+		return age;
+	}
+
+
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+
 
 	@Override
 	public String toString() {

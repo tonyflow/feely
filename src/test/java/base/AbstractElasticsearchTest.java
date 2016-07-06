@@ -30,7 +30,7 @@ public abstract class AbstractElasticsearchTest extends AbstractFeelyTest {
 		// client.admin().indices().delete(new
 		// DeleteIndexRequest(properties.getIndex())).actionGet();
 
-		client.admin().indices().prepareCreate(properties.getIndex()).get();
+		client.admin().indices().prepareCreate(properties.getUserIndex()).get();
 		// BulkRequestBuilder bulk = client.prepareBulk();
 		// bulk.add(client.prepareIndex(properties.getIndex(),
 		// properties.getDocumentType()).setSource(buildStringFromResourceFile()));
@@ -44,8 +44,8 @@ public abstract class AbstractElasticsearchTest extends AbstractFeelyTest {
 	@After
 	public void tearDown() {
 		try {
-			client.admin().indices().delete(new DeleteIndexRequest(properties.getIndex())).actionGet();
-			logger.info("Delete index " + properties.getIndex());
+			client.admin().indices().delete(new DeleteIndexRequest(properties.getUserIndex())).actionGet();
+			logger.info("Delete index " + properties.getUserIndex());
 			// Reset index count due to the static nature of the variable
 			// FIXME should not behave like that: Find another way to assign ids
 			// to documents

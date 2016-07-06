@@ -18,4 +18,8 @@ public interface FeelyService {
 	FeelingDto addFeeling(FeelingDto feeling);
 
 	boolean deleteFeeling(String name);
+
+	public boolean login(String username, String password);
+
+	public boolean register(FeelerDto feeler);
 }

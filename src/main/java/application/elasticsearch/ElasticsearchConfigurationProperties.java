@@ -25,7 +25,10 @@ public class ElasticsearchConfigurationProperties {
 	private String clusterName;
 
 	@NotNull
-	private String index;
+	private String userIndex;
+	
+	@NotNull
+	private String diaryIndex;
 
 	@NotNull
 	private String documentType;
@@ -87,12 +90,22 @@ public class ElasticsearchConfigurationProperties {
 		this.clusterName = clusterName;
 	}
 
-	public String getIndex() {
-		return index;
+	
+	
+	public String getUserIndex() {
+		return userIndex;
 	}
 
-	public void setIndex(String index) {
-		this.index = index;
+	public void setUserIndex(String userIndex) {
+		this.userIndex = userIndex;
+	}
+
+	public String getDiaryIndex() {
+		return diaryIndex;
+	}
+
+	public void setDiaryIndex(String diaryIndex) {
+		this.diaryIndex = diaryIndex;
 	}
 
 	public String getDocumentType() {

@@ -28,8 +28,8 @@ public class FeelingRepositoryTests extends AbstractFeelyTest {
 
 	@Test
 	public void testUpdate() throws Exception {
-		Feeling feeling = new Feeling("Sadness", "Unpleasant", 0);
-		feeling.setId(1);
+		Feeling feeling = new Feeling("Sadness", "Unpleasant", 32);
+		feeling.setId(21);
 		Feeling save = repo.save(feeling);
 
 		assertEquals("Sadness", save.getName());

@@ -20,7 +20,7 @@ public class FeelerRepositoryTests extends AbstractFeelyTest {
 	@Test
 	public void testFeeler() throws Exception {
 
-		Feeler feeler = new Feeler(1l, "username", "password", "sad", "234", new PreviousFeelings(ImmutableList.of("happy", "gorgeous")));
+		Feeler feeler = new Feeler(1l, "nikos", "strongioglou", "petriani@gmail.com", "male", 29, "username", null, null, null, new PreviousFeelings(ImmutableList.of("happy", "gorgeous")));
 		feeler = repo.save(feeler);
 		assertEquals("username", feeler.getUsername());
 	}

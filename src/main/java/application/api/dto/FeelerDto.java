@@ -10,6 +10,11 @@ public class FeelerDto implements BaseDto<Feeler>, Serializable {
 	private static final long serialVersionUID = 8266488668414110150L;
 
 	private Long id;
+	private String name;
+	private String surname;
+	private String email;
+	private String gender;
+	private Integer age;
 	private String username;
 	private String password;
 	private String lastFelt;
@@ -19,9 +24,15 @@ public class FeelerDto implements BaseDto<Feeler>, Serializable {
 	public FeelerDto() {
 	}
 
-	public FeelerDto(Long id, String username, String password, String lastFelt, String timesExpressed, PreviousFeelings previousFeelings) {
+	public FeelerDto(String name, String surname, String email, String gender,
+			Integer age, String username, String password, String lastFelt,
+			String timesExpressed, PreviousFeelings previousFeelings) {
 		super();
-		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.gender = gender;
+		this.age = age;
 		this.username = username;
 		this.password = password;
 		this.lastFelt = lastFelt;
@@ -29,8 +40,17 @@ public class FeelerDto implements BaseDto<Feeler>, Serializable {
 		this.previousFeelings = previousFeelings;
 	}
 
-	public FeelerDto(String username, String password, String lastFelt, String timesExpressed, PreviousFeelings previousFeelings) {
+	public FeelerDto(Long id, String name, String surname, String email,
+			String gender, Integer age, String username, String password,
+			String lastFelt, String timesExpressed,
+			PreviousFeelings previousFeelings) {
 		super();
+		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.gender = gender;
+		this.age = age;
 		this.username = username;
 		this.password = password;
 		this.lastFelt = lastFelt;
@@ -78,15 +98,64 @@ public class FeelerDto implements BaseDto<Feeler>, Serializable {
 		this.timesExpressed = timesExpressed;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public PreviousFeelings getPreviousFeelings() {
+		return previousFeelings;
+	}
+
+	public void setPreviousFeelings(PreviousFeelings previousFeelings) {
+		this.previousFeelings = previousFeelings;
+	}
+
 	@Override
 	public Feeler toEntity() {
-		return new Feeler(this.id, this.username, this.password, this.lastFelt, this.timesExpressed, this.previousFeelings);
+		return new Feeler(id, name, surname, email, gender, age, username,
+				password, lastFelt, timesExpressed, previousFeelings);
 	}
 
 	@Override
 	public FeelerDto fromEntity(Feeler entity) {
-		return new FeelerDto(entity.getId(), entity.getUsername(), entity.getPassword(), entity.getLastFelt(), entity.getTimesExpressed(),
-				entity.getPreviousFeelings());
+		return new FeelerDto(id, name, surname, email, gender, age, username,
+				password, lastFelt, timesExpressed, previousFeelings);
 	}
 
 }

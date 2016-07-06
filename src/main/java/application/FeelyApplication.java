@@ -1,5 +1,6 @@
 package application;
 
+import java.time.Clock;
 import java.time.ZoneId;
 
 import org.elasticsearch.client.Client;
@@ -17,6 +18,8 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Profile;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import application.elasticsearch.ElasticSettings;
 import application.elasticsearch.ElasticsearchConfigurationProperties;
@@ -53,6 +56,19 @@ public class FeelyApplication extends SpringBootServletInitializer {
 	@Bean
 	public ZoneId getTimeZone() {
 		return ZoneId.systemDefault();
+	}
+	
+	@Bean
+	public Clock getClock(ZoneId zoneId){
+		return Clock.system(zoneId);
+	}
+	
+	@Bean
+	MailSender mailSender(){
+		JavaMailSenderImpl mailServer = new JavaMailSenderImpl();
+		//should create an email server
+		mailServer.setHost("mail.mymailserver.com");
+		return mailServer;
 	}
 
 	@Bean

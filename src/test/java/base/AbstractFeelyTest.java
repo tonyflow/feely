@@ -35,7 +35,7 @@ public abstract class AbstractFeelyTest {
 
 	@Before
 	public void setUp() {
-//		TransactionHelper.truncate(template, Feeler.class, Feeling.class);
+		TransactionHelper.truncate(template, Feeler.class, Feeling.class);
 	}
 
 	@After

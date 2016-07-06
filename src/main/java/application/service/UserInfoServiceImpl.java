@@ -37,7 +37,7 @@ import com.google.common.base.Charsets;
 @Component
 public class UserInfoServiceImpl implements UserInfoService {
 
-	@Value("${application.elasticsearch.index}")
+	@Value("${application.elasticsearch.user-index}")
 	private String index;
 
 	@Value("${application.elasticsearch.document-type}")
